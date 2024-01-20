@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:sport/SeeExercicePage.dart';
+
 class SeeTraining extends StatefulWidget {
   final String seance;
   final String? imagePath;
@@ -28,74 +30,85 @@ class _SeeTrainingState extends State<SeeTraining> {
 
     if (exerciceList.containsKey('exerciceList')) {
       List<Map<String, dynamic>> exercices = exerciceList['exerciceList'];
-      for (var exerciceData in exercices)
-        {
-          nb++;
-          String exercice = exerciceData['exercice'];
-          String objectif = exerciceData['objectif'];
-          String poids = exerciceData['poids'];
+      for (var exerciceData in exercices) {
+        nb++;
+        String exercice = exerciceData['exercice'];
+        String objectif = exerciceData['objectif'];
+        String poids = exerciceData['poids'];
 
-          Container exerciceContainer = Container(
-            width: MediaQuery.of(context).size.width,
-            height: 90,
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-            decoration: BoxDecoration(
-                color: Color(0xFF696969),
-                borderRadius: BorderRadius.circular(10)),
-            child: Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(left: 15),
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(50, 219, 255, 0),
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Center(
-                    child: Text(
-                      (nb).toString(),
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFDBFF00)),
+        Container exerciceContainer = Container(
+          child: GestureDetector(
+            onTap: () async {
+              bool delete = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SeeExercice(
+                    exercice: exercice,
+                    objectif: objectif,
+                    poids: poids,
+                  )));
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 90,
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              decoration: BoxDecoration(
+                  color: Color(0xFF696969),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    margin: EdgeInsets.only(left: 15),
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(50, 219, 255, 0),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Center(
+                      child: Text(
+                        (nb).toString(),
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFDBFF00)),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 15, left: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          exercice,
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                  Container(
+                    margin: EdgeInsets.only(top: 15, left: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text(
+                            exercice,
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        width: 230,
-                        height: 20,
-                        child: Text(
-                          objectif,
-                          style:
-                          TextStyle(fontSize: 15, color: Color(0xFFBBBBBB)),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          width: 230,
+                          height: 20,
+                          child: Text(
+                            objectif,
+                            style: TextStyle(
+                                fontSize: 15, color: Color(0xFFBBBBBB)),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          );
+          ),
+        );
 
-          containerList.add(exerciceContainer);
-        }
+        containerList.add(exerciceContainer);
+      }
     }
-
   }
 
   @override
@@ -105,8 +118,6 @@ class _SeeTrainingState extends State<SeeTraining> {
     final imagePath = widget.imagePath;
     final description = widget.description;
     final exerciceList = widget.exerciceList;
-
-    print(exerciceList);
 
     chargerExercices(exerciceList);
 
@@ -161,7 +172,7 @@ class _SeeTrainingState extends State<SeeTraining> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 60, left: 35, right: 35),
+              margin: EdgeInsets.only(top: 50, left: 35, right: 35),
               child: Text(
                 "Exercices",
                 style: TextStyle(
@@ -174,8 +185,8 @@ class _SeeTrainingState extends State<SeeTraining> {
               margin: EdgeInsets.only(top: 25, left: 35, right: 35),
               height: 470,
               child: ListView(
-                  children: containerList,
-                  ),
+                children: containerList,
+              ),
             )
           ],
         ),

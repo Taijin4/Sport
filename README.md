@@ -1,16 +1,40 @@
-# sport
+# Application de sport
 
-A new Flutter project.
+Cette application de sport permets à l'utilisateur d'enregistrer ses différentes séances afin de 
+pouvoir suivre ses performances. 
 
-## Getting Started
+## Fonctionnalitées :
+- Suivre son objectif de nombre de séances par semaine 
+- Enregister différentes séances avec des exercices
+- Enregistrer le poids actuel sur un exercice
+- Ajouter des exercices aux favoris
+- Supprimer une séance créée
 
-This project is a starting point for a Flutter application.
+## Futures fonctionnalitées :
+- Affichage des exercices favoris
+- Graphiques de progression pour les exercices favoris
+- Supprimer un exercice dans une séance
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Images de l'application : 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](assets/markdown/home.jpg)
+
+![image](assets/markdown/seanceValue.jpg)
+
+![image](assets/markdown/home2.jpg)
+
+![image](assets/markdown/library.jpg)
+
+![image](assets/markdown/newSeance.jpg)
+
+![image](assets/markdown/newExercice.jpg)
+
+![image](assets/markdown/library2.jpg)
+
+![image](assets/markdown/seeSeance.jpg)
+
+
+## Langages utilisés : 
+- Dart
+- Flutter
